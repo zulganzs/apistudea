@@ -2,6 +2,9 @@ import { NextResponse } from "next/server";
 import bcrypt from 'bcryptjs';
 import connectMongo from '@/lib/mongoose';
 import User from '@/models/user';
+import crypto from 'crypto';
+import transporter from '@/transport';
+import { env } from "process";
 
 export async function GET() {
   return NextResponse.json(
@@ -97,6 +100,96 @@ export async function POST(request) {
     });
 
     const savedUser = await newUser.save();
+
+    const verifyToken = crypto.randomBytes(20).toString('hex');
+    savedUser.verify_token = verifyToken;
+    savedUser.verify_expired = new Date(Date.now() + 1 * 60 * 60 * 1000);
+    await savedUser.save();
+
+    const origin = request.headers.get('origin')
+    const verifyLink = `${origin}/api/auth/verify?token=${verifyToken}&email=${savedUser.email}`;
+    await transporter.sendMail({
+      to: savedUser.email,
+      subject: 'Email Verification',
+      text: `<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Email Verification</title>
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            margin: 0;
+            padding: 0;
+            background-color: #f4f4f4;
+        }
+        .container {
+            max-width: 600px;
+            margin: 0 auto;
+            background-color: #ffffff;
+            border-radius: 8px;
+            box-shadow: 0 2px 10px rgba(0, 0, 0, 0.1);
+            overflow: hidden;
+        }
+        .header {
+            background-color: #4CAF50;
+            color: #ffffff;
+            padding: 20px;
+            text-align: center;
+        }
+        .content {
+            padding: 20px;
+            text-align: left;
+        }
+        .button-container {
+            text-align: center;
+            margin-top: 20px;
+        }
+        .button {
+            display: inline-block;
+            background-color: #4CAF50;
+            color: #ffffff;
+            padding: 15px 25px;
+            text-decoration: none;
+            border-radius: 5px;
+        }
+        .footer {
+            text-align: center;
+            padding: 20px;
+            font-size: 12px;
+            color: #777777;
+        }
+        @media (max-width: 600px) {
+            .container {
+                width: 100%;
+                box-shadow: none;
+            }
+            .button {
+                width: 100%;
+                box-sizing: border-box;
+            }
+        }
+    </style>
+</head>
+<body>
+    <div class="container">
+        <div class="header">
+            <h1>Email Verification</h1>
+        </div>
+        <div class="content">
+            <h2>Hello ${savedUser.username},</h2>
+            <p>Thank you for signing up! To complete your registration, please verify your email address by clicking the button below:</p>
+            <div class="button-container">
+                <a href="${verifyLink}" class="button">Verify Email</a>
+            </div>
+            <p>If you did not create an account, no further action is required.</p>
+        </div>
+    </div>
+</body>
+</html>`
+    });
+
     console.log('New user created successfully:', email);
 
     return NextResponse.json({

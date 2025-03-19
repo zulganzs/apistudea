@@ -1,0 +1,11 @@
+Input of the function is an array of the following:
+Academic achievements (how good their grades are)
+Non-Academic achievements (1 being none, 5 being an equivalent of an international competition winner)
+Income (1 being very poor, 5 being very rich)
+Motivation (1 being just trying out, 5 being desperate)
+Interest: 
+1 is stem(engineering, physics, math, etc)
+2 is humanities(anthropology, psychology, literature, etc)
+3 is business(management, accounting, economics, etc)
+4 is art(liberal arts, sculpting, pottery, etc)
+5 is others

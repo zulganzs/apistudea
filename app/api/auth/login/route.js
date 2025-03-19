@@ -2,6 +2,8 @@ import { NextResponse } from "next/server";
 import bcrypt from 'bcryptjs';
 import connectMongo from '@/lib/mongoose';
 import User from '@/models/user';
+import nodemailer from 'nodemailer';
+
 
 export async function GET() {
   return NextResponse.json(

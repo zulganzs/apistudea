@@ -1,0 +1,392 @@
+[
+  {
+    "name": "Universitas Indonesia (UI)",
+    "academic_min": 5,
+    "non_academic_min": 3,
+    "income_max": 0,
+    "motivation_min": 4,
+    "interest": 0,
+    "app_deadline": "2024-06-15",
+    "type": "university"
+  },
+  {
+    "name": "Institut Teknologi Bandung (ITB)",
+    "academic_min": 5,
+    "non_academic_min": 4,
+    "income_max": 0,
+    "motivation_min": 5,
+    "interest": 1,
+    "app_deadline": "2024-05-30",
+    "type": "university"
+  },
+  {
+    "name": "Universitas Gadjah Mada (UGM)",
+    "academic_min": 5,
+    "non_academic_min": 3,
+    "income_max": 0,
+    "motivation_min": 4,
+    "interest": 0,
+    "app_deadline": "2024-06-20",
+    "type": "university"
+  },
+  {
+    "name": "Universitas Airlangga (UNAIR)",
+    "academic_min": 4,
+    "non_academic_min": 2,
+    "income_max": 0,
+    "motivation_min": 3,
+    "interest": 0,
+    "app_deadline": "2024-06-25",
+    "type": "university"
+  },
+  {
+    "name": "IPB University",
+    "academic_min": 4,
+    "non_academic_min": 3,
+    "income_max": 0,
+    "motivation_min": 4,
+    "interest": 1,
+    "app_deadline": "2024-06-10",
+    "type": "university"
+  },
+  {
+    "name": "Universitas Padjadjaran (UNPAD)",
+    "academic_min": 4,
+    "non_academic_min": 2,
+    "income_max": 0,
+    "motivation_min": 3,
+    "interest": 0,
+    "app_deadline": "2024-06-30",
+    "type": "university"
+  },
+  {
+    "name": "Universitas Brawijaya (UB)",
+    "academic_min": 4,
+    "non_academic_min": 2,
+    "income_max": 0,
+    "motivation_min": 3,
+    "interest": 0,
+    "app_deadline": "2024-07-01",
+    "type": "university"
+  },
+  {
+    "name": "Institut Pertanian Bogor (IPB)",
+    "academic_min": 4,
+    "non_academic_min": 3,
+    "income_max": 0,
+    "motivation_min": 4,
+    "interest": 1,
+    "app_deadline": "2024-06-10",
+    "type": "university"
+  },
+  {
+    "name": "Universitas Diponegoro (UNDIP)",
+    "academic_min": 4,
+    "non_academic_min": 2,
+    "income_max": 0,
+    "motivation_min": 3,
+    "interest": 0,
+    "app_deadline": "2024-06-28",
+    "type": "university"
+  },
+  {
+    "name": "Universitas Sebelas Maret (UNS)",
+    "academic_min": 4,
+    "non_academic_min": 2,
+    "income_max": 0,
+    "motivation_min": 3,
+    "interest": 0,
+    "app_deadline": "2024-06-22",
+    "type": "university"
+  },
+  {
+    "name": "Universitas Hasanuddin (UNHAS)",
+    "academic_min": 4,
+    "non_academic_min": 2,
+    "income_max": 0,
+    "motivation_min": 3,
+    "interest": 0,
+    "app_deadline": "2024-06-18",
+    "type": "university"
+  },
+  {
+    "name": "Universitas Andalas (UNAND)",
+    "academic_min": 4,
+    "non_academic_min": 2,
+    "income_max": 0,
+    "motivation_min": 3,
+    "interest": 0,
+    "app_deadline": "2024-06-25",
+    "type": "university"
+  },
+  {
+    "name": "Universitas Negeri Yogyakarta (UNY)",
+    "academic_min": 3,
+    "non_academic_min": 2,
+    "income_max": 0,
+    "motivation_min": 3,
+    "interest": 0,
+    "app_deadline": "2024-06-20",
+    "type": "university"
+  },
+  {
+    "name": "Universitas Negeri Jakarta (UNJ)",
+    "academic_min": 3,
+    "non_academic_min": 2,
+    "income_max": 0,
+    "motivation_min": 3,
+    "interest": 0,
+    "app_deadline": "2024-06-22",
+    "type": "university"
+  },
+  {
+    "name": "Universitas Negeri Semarang (UNNES)",
+    "academic_min": 3,
+    "non_academic_min": 2,
+    "income_max": 0,
+    "motivation_min": 3,
+    "interest": 0,
+    "app_deadline": "2024-06-25",
+    "type": "university"
+  },
+  {
+    "name": "Universitas Negeri Malang (UM)",
+    "academic_min": 3,
+    "non_academic_min": 2,
+    "income_max": 0,
+    "motivation_min": 3,
+    "interest": 0,
+    "app_deadline": "2024-07-01",
+    "type": "university"
+  },
+  {
+  "name": "Institut Teknologi Sepuluh Nopember (ITS)",
+  "academic_min": 5,
+  "non_academic_min": 4,
+  "income_max": 0,
+  "motivation_min": 5,
+  "interest": 1,
+  "app_deadline": "2024-05-25",
+  "type": "university"
+  },
+  {
+    "name": "Universitas Pendidikan Indonesia (UPI)",
+    "academic_min": 4,
+    "non_academic_min": 3,
+    "income_max": 0,
+    "motivation_min": 4,
+    "interest": 2,
+    "app_deadline": "2024-06-17",
+    "type": "university"
+  },
+  {
+    "name": "Universitas Jenderal Soedirman (UNSOED)",
+    "academic_min": 4,
+    "non_academic_min": 2,
+    "income_max": 0,
+    "motivation_min": 3,
+    "interest": 0,
+    "app_deadline": "2024-07-05",
+    "type": "university"
+  },
+  {
+    "name": "Universitas Udayana (UNUD)",
+    "academic_min": 4,
+    "non_academic_min": 2,
+    "income_max": 0,
+    "motivation_min": 3,
+    "interest": 0,
+    "app_deadline": "2024-06-27",
+    "type": "university"
+  },
+  {
+    "name": "Universitas Negeri Surabaya (UNESA)",
+    "academic_min": 3,
+    "non_academic_min": 2,
+    "income_max": 0,
+    "motivation_min": 3,
+    "interest": 4,
+    "app_deadline": "2024-07-03",
+    "type": "university"
+  },
+  {
+    "name": "LPDP Scholarship",
+    "academic_min": 4,
+    "non_academic_min": 3,
+    "income_max": 3,
+    "motivation_min": 5,
+    "interest": 0,
+    "app_deadline": "2024-09-30",
+    "type": "scholarship"
+  },
+  {
+    "name": "Bidikmisi",
+    "academic_min": 3,
+    "non_academic_min": 2,
+    "income_max": 2,
+    "motivation_min": 4,
+    "interest": 0,
+    "app_deadline": "2024-04-15",
+    "type": "scholarship"
+  },
+  {
+    "name": "Djarum Beasiswa Plus",
+    "academic_min": 4,
+    "non_academic_min": 3,
+    "income_max": 3,
+    "motivation_min": 4,
+    "interest": 0,
+    "app_deadline": "2024-08-31",
+    "type": "scholarship"
+  },
+  {
+    "name": "Bank Indonesia Scholarship",
+    "academic_min": 4,
+    "non_academic_min": 3,
+    "income_max": 3,
+    "motivation_min": 4,
+    "interest": 3,
+    "app_deadline": "2024-07-15",
+    "type": "scholarship"
+  },
+  {
+    "name": "Pertamina Scholarship",
+    "academic_min": 4,
+    "non_academic_min": 3,
+    "income_max": 3,
+    "motivation_min": 4,
+    "interest": 1,
+    "app_deadline": "2024-08-01",
+    "type": "scholarship"
+  },
+  {
+    "name": "Tanoto Foundation Scholarship",
+    "academic_min": 4,
+    "non_academic_min": 3,
+    "income_max": 3,
+    "motivation_min": 4,
+    "interest": 0,
+    "app_deadline": "2024-07-20",
+    "type": "scholarship"
+  },
+  {
+    "name": "Supersemar Scholarship",
+    "academic_min": 3,
+    "non_academic_min": 2,
+    "income_max": 2,
+    "motivation_min": 4,
+    "interest": 0,
+    "app_deadline": "2024-06-30",
+    "type": "scholarship"
+  },
+  {
+    "name": "BCA Finance Scholarship",
+    "academic_min": 4,
+    "non_academic_min": 3,
+    "income_max": 3,
+    "motivation_min": 4,
+    "interest": 3,
+    "app_deadline": "2024-07-10",
+    "type": "scholarship"
+  },
+  {
+    "name": "Astra International Scholarship",
+    "academic_min": 4,
+    "non_academic_min": 3,
+    "income_max": 3,
+    "motivation_min": 4,
+    "interest": 1,
+    "app_deadline": "2024-08-15",
+    "type": "scholarship"
+  },
+  {
+    "name": "CIMB Niaga Scholarship",
+    "academic_min": 4,
+    "non_academic_min": 3,
+    "income_max": 3,
+    "motivation_min": 4,
+    "interest": 3,
+    "app_deadline": "2024-07-25",
+    "type": "scholarship"
+  },
+  {
+    "name": "Ministry of Education Merit Scholarship",
+    "academic_min": 5,
+    "non_academic_min": 4,
+    "income_max": 0,
+    "motivation_min": 5,
+    "interest": 0,
+    "app_deadline": "2024-09-01",
+    "type": "scholarship"
+  },
+  {
+    "name": "OCBC NISP Scholarship",
+    "academic_min": 4,
+    "non_academic_min": 3,
+    "income_max": 3,
+    "motivation_min": 4,
+    "interest": 3,
+    "app_deadline": "2024-07-30",
+    "type": "scholarship"
+  },
+  {
+    "name": "BAZNAS Scholarship",
+    "academic_min": 3,
+    "non_academic_min": 2,
+    "income_max": 2,
+    "motivation_min": 4,
+    "interest": 0,
+    "app_deadline": "2024-10-01",
+    "type": "scholarship"
+  },
+  {
+  "name": "Telkom Indonesia Scholarship",
+  "academic_min": 4,
+  "non_academic_min": 3,
+  "income_max": 3,
+  "motivation_min": 4,
+  "interest": 1,
+  "app_deadline": "2024-08-20",
+  "type": "scholarship"
+  },
+  {
+    "name": "Sampoerna Foundation Scholarship",
+    "academic_min": 4,
+    "non_academic_min": 3,
+    "income_max": 3,
+    "motivation_min": 5,
+    "interest": 3,
+    "app_deadline": "2024-09-10",
+    "type": "scholarship"
+  },
+  {
+    "name": "Bakti Budaya Arts Scholarship",
+    "academic_min": 3,
+    "non_academic_min": 4,
+    "income_max": 2,
+    "motivation_min": 4,
+    "interest": 4,
+    "app_deadline": "2024-07-12",
+    "type": "scholarship"
+  },
+  {
+    "name": "Maybank ASEAN Scholarship",
+    "academic_min": 4,
+    "non_academic_min": 3,
+    "income_max": 3,
+    "motivation_min": 4,
+    "interest": 3,
+    "app_deadline": "2024-08-05",
+    "type": "scholarship"
+  },
+  {
+    "name": "Indofood Future Leaders Scholarship",
+    "academic_min": 4,
+    "non_academic_min": 3,
+    "income_max": 3,
+    "motivation_min": 5,
+    "interest": 5,
+    "app_deadline": "2024-10-15",
+    "type": "scholarship"
+  }
+]
