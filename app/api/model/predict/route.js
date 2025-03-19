@@ -1,5 +1,5 @@
 import { NextResponse } from "next/server";
-import * as tf from '@tensorflow/tfjs-node';
+import * as tf from '@tensorflow/tfjs';
 import fs from 'fs/promises';
 import path from 'path';
 import { DateTime } from 'luxon';
@@ -11,7 +11,10 @@ let institutionsData;
 async function loadModelAndData() {
   if (!model) {
     try {
-      model = await tf.loadSavedModel('ai/Model');
+      // Load the converted model using the static file handler
+      const modelPath = `${process.env.NEXT_PUBLIC_API_URL || 'http://localhost:3000'}/ai/tfjs_model/model.json`;
+      model = await tf.loadGraphModel(modelPath);
+      
       const datasetPath = path.join(process.cwd(), 'ai/dataset.json');
       const rawData = await fs.readFile(datasetPath, 'utf8');
       institutionsData = JSON.parse(rawData);
@@ -20,6 +23,7 @@ async function loadModelAndData() {
       throw error;
     }
   }
+  return { model, institutionsData };
 }
 
 export async function GET() {
@@ -31,9 +35,6 @@ export async function GET() {
 
 export async function POST(request) {
   try {
-    // Load model and data if not already loaded
-    await loadModelAndData();
-
     // Get request body
     const body = await request.json();
     const { user_profile, top_n = 5, reference_date = '2024-01-01' } = body;
@@ -46,33 +47,35 @@ export async function POST(request) {
       );
     }
 
+    // Load model and data
+    const { model, institutionsData } = await loadModelAndData();
+
     // Extract features from institutions data
     const featureColumns = ['academic_min', 'non_academic_min', 'income_max', 'motivation_min', 'interest'];
     const institutionsFeatures = institutionsData.map(inst => 
       featureColumns.map(col => inst[col])
     );
 
-    // Create tensors
-    const userFeatures = tf.tile(
-      tf.tensor2d([user_profile], [1, 5]),
-      [institutionsData.length, 1]
-    );
-    const instFeatures = tf.tensor2d(institutionsFeatures);
-
-    // Get predictions
-    const predictions = await model.predict({
-      inputs: userFeatures,
-      inputs_1: instFeatures
+    // Create tensors and get predictions
+    const predictions = await tf.tidy(() => {
+      const userTensor = tf.tensor2d([user_profile], [1, 5]);
+      const userFeatures = tf.tile(userTensor, [institutionsData.length, 1]);
+      const instFeatures = tf.tensor2d(institutionsFeatures);
+      
+      return model.predict({
+        'serving_default_inputs:0': userFeatures,
+        'serving_default_inputs_1:0': instFeatures
+      });
     });
 
-    // Process predictions
+    // Get prediction values
     const predictionValues = await predictions.array();
-    const flatPredictions = predictionValues.flat();
+    predictions.dispose();
 
     // Add scores to institutions data
     const recommendations = institutionsData.map((inst, i) => ({
       ...inst,
-      match_score: flatPredictions[i]
+      match_score: predictionValues[0][i]
     }));
 
     // Filter by active deadlines
