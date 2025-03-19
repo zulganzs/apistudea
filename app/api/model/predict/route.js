@@ -1,5 +1,5 @@
 import { NextResponse } from "next/server";
-import * as tf from '@tensorflow/tfjs';
+import * as tf from '@tensorflow/tfjs-node';  // Use tfjs-node instead of tfjs
 import fs from 'fs/promises';
 import path from 'path';
 import { DateTime } from 'luxon';
@@ -11,9 +11,9 @@ let institutionsData;
 async function loadModelAndData() {
   if (!model) {
     try {
-      // Load the converted model using the static file handler
-      const modelPath = `${process.env.NEXT_PUBLIC_API_URL || 'http://localhost:3000'}/ai/tfjs_model/model.json`;
-      model = await tf.loadGraphModel(modelPath);
+      // Load the model using tfjs-node's file system handler
+      const modelPath = path.join(process.cwd(), 'ai/Model');
+      model = await tf.node.loadSavedModel(modelPath);
       
       const datasetPath = path.join(process.cwd(), 'ai/dataset.json');
       const rawData = await fs.readFile(datasetPath, 'utf8');
@@ -57,20 +57,22 @@ export async function POST(request) {
     );
 
     // Create tensors and get predictions
-    const predictions = await tf.tidy(() => {
+    const userFeatures = tf.tidy(() => {
       const userTensor = tf.tensor2d([user_profile], [1, 5]);
-      const userFeatures = tf.tile(userTensor, [institutionsData.length, 1]);
-      const instFeatures = tf.tensor2d(institutionsFeatures);
-      
-      return model.predict({
-        'serving_default_inputs:0': userFeatures,
-        'serving_default_inputs_1:0': instFeatures
-      });
+      return tf.tile(userTensor, [institutionsData.length, 1]);
+    });
+
+    const instFeatures = tf.tensor2d(institutionsFeatures);
+
+    // Get predictions using the loaded SavedModel
+    const predictions = await model.predict({
+      inputs: userFeatures,
+      inputs_1: instFeatures
     });
 
     // Get prediction values
     const predictionValues = await predictions.array();
-    predictions.dispose();
+    tf.dispose([userFeatures, instFeatures, predictions]);
 
     // Add scores to institutions data
     const recommendations = institutionsData.map((inst, i) => ({
