@@ -1,30 +1,6 @@
 import { NextResponse } from "next/server";
-import * as tf from '@tensorflow/tfjs-node';  // Use tfjs-node instead of tfjs
-import fs from 'fs/promises';
-import path from 'path';
 import { DateTime } from 'luxon';
-
-let model;
-let institutionsData;
-
-// Load model and data
-async function loadModelAndData() {
-  if (!model) {
-    try {
-      // Load the model using tfjs-node's file system handler
-      const modelPath = path.join(process.cwd(), 'ai/Model');
-      model = await tf.node.loadSavedModel(modelPath);
-      
-      const datasetPath = path.join(process.cwd(), 'ai/dataset.json');
-      const rawData = await fs.readFile(datasetPath, 'utf8');
-      institutionsData = JSON.parse(rawData);
-    } catch (error) {
-      console.error('Error loading model or data:', error);
-      throw error;
-    }
-  }
-  return { model, institutionsData };
-}
+import { getPredictions } from '../../../lib/modelLoader';
 
 export async function GET() {
   return NextResponse.json(
@@ -47,37 +23,17 @@ export async function POST(request) {
       );
     }
 
-    // Load model and data
-    const { model, institutionsData } = await loadModelAndData();
-
-    // Extract features from institutions data
-    const featureColumns = ['academic_min', 'non_academic_min', 'income_max', 'motivation_min', 'interest'];
-    const institutionsFeatures = institutionsData.map(inst => 
-      featureColumns.map(col => inst[col])
+    // Get predictions using the loader module
+    const { predictionValues, institutionsData } = await getPredictions(
+      user_profile,
+      top_n,
+      reference_date
     );
-
-    // Create tensors and get predictions
-    const userFeatures = tf.tidy(() => {
-      const userTensor = tf.tensor2d([user_profile], [1, 5]);
-      return tf.tile(userTensor, [institutionsData.length, 1]);
-    });
-
-    const instFeatures = tf.tensor2d(institutionsFeatures);
-
-    // Get predictions using the loaded SavedModel
-    const predictions = await model.predict({
-      inputs: userFeatures,
-      inputs_1: instFeatures
-    });
-
-    // Get prediction values
-    const predictionValues = await predictions.array();
-    tf.dispose([userFeatures, instFeatures, predictions]);
 
     // Add scores to institutions data
     const recommendations = institutionsData.map((inst, i) => ({
       ...inst,
-      match_score: predictionValues[0][i]
+      match_score: predictionValues[i]
     }));
 
     // Filter by active deadlines
