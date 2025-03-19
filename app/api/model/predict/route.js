@@ -1,6 +1,6 @@
-import { NextResponse } from "next/server";
+import { NextResponse } from 'next/server';
 import { DateTime } from 'luxon';
-import { getPredictions } from '../../../lib/modelLoader';
+import { getPredictions } from '../../../../lib/modelLoader.js';
 
 export async function GET() {
   return NextResponse.json(
