@@ -21,7 +21,7 @@ export async function POST(request) {
     let email, password;
     const missingFields = [];
     
-    // Try URL parameters first
+    // URL parameters first
     // const url = new URL(request.url);
     // const params = url.searchParams;
     
