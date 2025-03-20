@@ -22,15 +22,7 @@ export async function POST(request) {
         { status: 400 }
       );
     }
-
-    //check for missing fields
-    if (!user_profile[0] || !user_profile[1] || !user_profile[2] || !user_profile[3] || !user_profile[4]) {
-      return NextResponse.json(
-        { message: 'Missing required fields: user_profile' },
-        { status: 400 }
-      );
-    }
-
+    
     // Get predictions using the loader module
     const { predictionValues, institutionsData } = await getPredictions(
       user_profile,

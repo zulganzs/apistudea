@@ -4,7 +4,7 @@ import connectMongo from '@/lib/mongoose';
 import User from '@/models/user';
 import crypto from 'crypto';
 import transporter from '@/transport';
-import { env } from "process";
+// import { env } from "process";
 
 export async function GET() {
   return NextResponse.json(
